@@ -1,3 +1,34 @@
+#include <bluefruit.h>
+
+// ==== Variables ====
+const int buttonPin = 9; 
+const int potPin = A0;
+const int redLEDPin = 6;
+const int greenLEDPin = 5;  
+const int clkPin = 10;
+const int dtPin = 11;
+
+// ==== States ====
+bool flashlightOn = false;  
+int lastButtonState = HIGH;  
+int lastClk = HIGH;          
+int colorIndex = 0;          
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(potPin, INPUT);
+  pinMode(clkPin, INPUT_PULLUP);
+  pinMode(dtPin, INPUT_PULLUP);
+  pinMode(greenLEDPin, OUTPUT);
+  pinMode(redLEDPin, OUTPUT);
+
+  // starts with red on
+  digitalWrite(redLEDPin, HIGH);
+  digitalWrite(greenLEDPin, LOW);
+
+  Serial.begin(9600);
+}
+
 void loop() {
   //=============button=============
   if (digitalRead(buttonPin) == LOW) {
