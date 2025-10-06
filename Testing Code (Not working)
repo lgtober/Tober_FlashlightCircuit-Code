@@ -1,0 +1,82 @@
+/*#include <bluefruit.h>
+
+// ==== Pin Assignments ====
+const int buttonPin = 9;
+const int potPin = A0;
+const int redLEDPin = 6;
+const int greenLEDPin = 5;
+const int clkPin = 10;
+const int dtPin = 11;
+
+// ==== State Variables ====
+bool flashlightOn = false;
+int lastClk = HIGH;
+int colorIndex = 0;
+
+void setup() {
+pinMode(buttonPin, INPUT_PULLUP);
+pinMode(potPin, INPUT);
+pinMode(clkPin, INPUT_PULLUP);
+pinMode(dtPin, INPUT_PULLUP);
+pinMode(greenLEDPin, OUTPUT);
+pinMode(redLEDPin, OUTPUT);
+
+// Start with red LED on
+digitalWrite(redLEDPin, HIGH);
+digitalWrite(greenLEDPin, LOW);
+
+Serial.begin(9600);
+}
+
+void loop() {
+// ===== BUTTON TOGGLE =====
+if (digitalRead(buttonPin) == LOW) {
+flashlightOn = !flashlightOn;
+delay(200); // debounce
+}
+
+// ===== BRIGHTNESS =====
+int brightness = analogRead(potPin) / 4; // scale 0–1023 → 0–255
+
+// ===== LED STATUS INDICATORS =====
+if (flashlightOn) {
+digitalWrite(greenLEDPin, HIGH);
+digitalWrite(redLEDPin, LOW);
+} else {
+digitalWrite(greenLEDPin, LOW);
+digitalWrite(redLEDPin, HIGH);
+}
+
+// ===== ROTARY ENCODER COLOR CONTROL =====
+int clkState = digitalRead(clkPin);
+if (clkState != lastClk) {
+if (digitalRead(dtPin) != clkState) {
+colorIndex++;
+} else {
+colorIndex--;
+}
+colorIndex = constrain(colorIndex, 0, 3);
+}
+lastClk = clkState;
+
+// ===== SERIAL OUTPUT (NUMBERS ONLY) =====
+// Format: onOff brightness colorIndex
+Serial.print(flashlightOn ? 1 : 0);
+Serial.print(" ");
+Serial.print(brightness);
+Serial.print(" ");
+Serial.println(colorIndex);
+
+delay(100);
+}
+
+*/
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("HELLO WORLD");
+  delay(1000);
+}
